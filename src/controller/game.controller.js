@@ -31,6 +31,10 @@ class GameController {
 
             const responseMoves = new PossibleMovesController(responseGame[0].playerTurn).nextMoves(responsePieces[0].tab)
 
+            if(responseMoves.length === 0) {
+                return res.status(200).send({message: "Fim de Jogo"})
+            }
+
             const response = {
                 responseGame,
                 responsePieces,
@@ -64,7 +68,16 @@ class GameController {
             ['e', 'w', 'e', 'w', 'e', 'w', 'e', 'w']
         ]
 
-        const data = { id: gameId, idPlayer1, idPlayer2: "", playerTurn: 'player1' }
+        const data = { 
+            id: gameId, 
+            idPlayer1, 
+            idPlayer2: "", 
+            playerTurn: 'player1', 
+            points: {
+                w: 0,
+                b: 0
+            } 
+        }
         const dataPieces = {
             id: gameId,
             tab

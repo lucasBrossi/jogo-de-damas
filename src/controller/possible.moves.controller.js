@@ -5,7 +5,7 @@ class PossibleMovesController {
 
     nextMoves(tab) {
 
-        let newMoves = []
+        let newMoves = this.queenMoves(tab)
 
         if (this.PLAYER_TURN === "player1") {
             for (var i = 0; i <= 7; i++) {
@@ -42,16 +42,16 @@ class PossibleMovesController {
         var newPositions = this.captureMove(tab, null, null)
 
         if (newPositions.length > 0) {
-            
+
             var newPositions2 = this.captureMove(tab, newPositions, null)
-            var newPositions3 = this.captureMove(tab, newPositions2, 4)
-            
+            var newPositions3 = this.captureMove(tab, newPositions2, 6)
+
             return newPositions3
-            
+
 
         } else {
             return newMoves
-            
+
         }
     }
 
@@ -61,75 +61,75 @@ class PossibleMovesController {
 
         if (newPositions) {
             if (num) {
-                
+
                 if (this.PLAYER_TURN === "player1") {
-                    newMoves.forEach(element => {
-                        
-                        if (element[num]) {
-                            if (!((tab[parseInt(element[num][2]) - 1])===undefined) && tab[parseInt(element[num][2]) - 1][parseInt(element[num][3]) + 1] === 'b'||tab[parseInt(element[num][2]) - 1][parseInt(element[num][3]) + 1] === 'bq') {
-                                if (!((tab[parseInt(element[num][2]) - 2])===undefined) && tab[parseInt(element[num][2]) - 2][parseInt(element[num][3]) + 2] === 'e') {
-                                    element.push([parseInt(element[num][2]), parseInt(element[num][3]), parseInt(element[num][2]) - 2, parseInt(element[num][3]) + 2])
+                    newMoves.forEach(e => {
+
+                        if (e[num]) {
+                            if (!((tab[e[num][4] - 1]) === undefined) && tab[e[num][4] - 1][e[num][5] + 1] === 'b' || tab[e[num][4] - 1][e[num][5] + 1] === 'bq') {
+                                if (!((tab[e[num][4] - 2]) === undefined) && tab[e[num][4] - 2][e[num][5] + 2] === 'e') {
+                                    e.push([e[num][4], e[num][5], e[num][4] - 1, e[num][5] + 1, e[num][4] - 2, e[num][5] + 2])
 
                                 }
                             }
 
-                            if (!((tab[parseInt(element[num][2]) - 1])===undefined) && tab[parseInt(element[num][2]) - 1][parseInt(element[num][3]) - 1] === 'b'||tab[parseInt(element[num][2]) - 1][parseInt(element[num][3]) - 1] === 'bq') {
-                                if (!((tab[parseInt(element[num][2]) - 2])===undefined) && tab[parseInt(element[num][2]) - 2][parseInt(element[num][3]) - 2] === 'e') {
-                                    element.push([parseInt(element[num][2]), parseInt(element[num][3]), parseInt(element[num][2]) - 2, parseInt(element[num][3]) - 2])
+                            if (!((tab[e[num][4] - 1]) === undefined) && tab[e[num][4] - 1][e[num][5] - 1] === 'b' || tab[e[num][4] - 1][e[num][5] - 1] === 'bq') {
+                                if (!((tab[e[num][4] - 2]) === undefined) && tab[e[num][4] - 2][e[num][5] - 2] === 'e') {
+                                    e.push([e[num][4], e[num][5], e[num][4] - 1, e[num][5] - 1, e[num][4] - 2, e[num][5] - 2])
                                 }
                             }
-                        } 
+                        }
                     })
                 } else {
-                    newMoves.forEach(element => {
-                        
-                        if (element[num]) {
-                            if (!((tab[parseInt(element[num][2]) + 1])===undefined) && tab[parseInt(element[num][2]) + 1][parseInt(element[num][3]) + 1] === 'w'||tab[parseInt(element[num][2]) + 1][parseInt(element[num][3]) + 1] === 'wq') {
-                                if (!((tab[parseInt(element[num][2]) + 2])===undefined) && tab[parseInt(element[num][2]) + 2][parseInt(element[num][3]) + 2] === 'e') {
-                                    element.push([parseInt(element[num][2]), parseInt(element[num][3]), parseInt(element[num][2]) + 2, parseInt(element[num][3]) + 2])
+                    newMoves.forEach(e => {
+
+                        if (e[num]) {
+                            if (!((tab[e[num][4] + 1]) === undefined) && tab[e[num][4] + 1][e[num][5] + 1] === 'w' || tab[e[num][4] + 1][e[num][5] + 1] === 'wq') {
+                                if (!((tab[e[num][4] + 2]) === undefined) && tab[e[num][4] + 2][e[num][5] + 2] === 'e') {
+                                    e.push([e[num][4], e[num][5], e[num][4] + 1, e[num][5] + 1, e[num][4] + 2, e[num][5] + 2])
 
                                 }
                             }
 
-                            if (!((tab[parseInt(element[num][2]) + 1])===undefined) && tab[parseInt(element[num][2]) + 1][parseInt(element[num][3]) - 1] === 'w'||tab[parseInt(element[num][2]) + 1][parseInt(element[num][3]) - 1] === 'wq') {
-                                if (!((tab[parseInt(element[num][2]) + 2])===undefined) && tab[parseInt(element[num][2]) + 2][parseInt(element[num][3]) - 2] === 'e') {
-                                    element.push([parseInt(element[num][2]), parseInt(element[num][3]), parseInt(element[num][2]) + 2, parseInt(element[num][3]) - 2])
+                            if (!((tab[e[num][4] + 1]) === undefined) && tab[e[num][4] + 1][e[num][5] - 1] === 'w' || tab[e[num][4] + 1][e[num][5] - 1] === 'wq') {
+                                if (!((tab[e[num][4] + 2]) === undefined) && tab[e[num][4] + 2][e[num][5] - 2] === 'e') {
+                                    e.push([e[num][4], e[num][5], e[num][4] + 1, e[num][5] - 1, e[num][4] + 2, e[num][5] - 2])
                                 }
                             }
-                        } 
+                        }
                     })
-                    
+
                 }
             } else {
                 if (this.PLAYER_TURN === "player1") {
-                    newMoves.forEach(element => {
+                    newMoves.forEach(e => {
 
 
-                        if (!((tab[parseInt(element[2]) - 1])===undefined) && tab[parseInt(element[2]) - 1][parseInt(element[3]) + 1] === 'b'||tab[parseInt(element[2]) - 1][parseInt(element[3]) + 1] === 'bq') {
-                            if (!((tab[parseInt(element[2]) - 2])===undefined) && tab[parseInt(element[2]) - 2][parseInt(element[3]) + 2] === 'e') {
-                                element.push([parseInt(element[2]), parseInt(element[3]), parseInt(element[2]) - 2, parseInt(element[3]) + 2])
+                        if (!((tab[e[4] - 1]) === undefined) && tab[e[4] - 1][e[5] + 1] === 'b' || tab[e[4] - 1][e[5] + 1] === 'bq') {
+                            if (!((tab[e[4] - 2]) === undefined) && tab[e[4] - 2][e[5] + 2] === 'e') {
+                                e.push([e[4], e[5], e[4] - 1, e[5] + 1, e[4] - 2, e[5] + 2])
                             }
                         }
 
-                        if (!((tab[parseInt(element[2]) - 1])===undefined) && tab[parseInt(element[2]) - 1][parseInt(element[3]) - 1] === 'b'||tab[parseInt(element[2]) - 1][parseInt(element[3]) - 1] === 'b') {
-                            if (!((tab[parseInt(element[2]) - 2])===undefined) && tab[parseInt(element[2]) - 2][parseInt(element[3]) - 2] === 'e') {
-                                element.push([parseInt(element[2]), parseInt(element[3]), parseInt(element[2]) - 2, parseInt(element[3]) - 2])
+                        if (!((tab[e[4] - 1]) === undefined) && tab[e[4] - 1][e[5] - 1] === 'b' || tab[e[4] - 1][e[5] - 1] === 'b') {
+                            if (!((tab[e[4] - 2]) === undefined) && tab[e[4] - 2][e[5] - 2] === 'e') {
+                                e.push([e[4], e[5], e[4] - 1, e[5] - 1, e[4] - 2, e[5] - 2])
                             }
                         }
                     })
                 } else {
-                    newMoves.forEach(element => {
+                    newMoves.forEach(e => {
 
 
-                        if (!((tab[parseInt(element[2]) + 1])===undefined) && tab[parseInt(element[2]) + 1][parseInt(element[3]) + 1] === 'b'||tab[parseInt(element[2]) + 1][parseInt(element[3]) + 1] === 'bq') {
-                            if (!((tab[parseInt(element[2]) + 2])===undefined) && tab[parseInt(element[2]) + 2][parseInt(element[3]) + 2] === 'e') {
-                                element.push([parseInt(element[2]), parseInt(element[3]), parseInt(element[2]) + 2, parseInt(element[3]) + 2])
+                        if (!((tab[e[4] + 1]) === undefined) && tab[e[4] + 1][e[5] + 1] === 'b' || tab[e[4] + 1][e[5] + 1] === 'bq') {
+                            if (!((tab[e[4] + 2]) === undefined) && tab[e[4] + 2][e[5] + 2] === 'e') {
+                                e.push([e[4], e[5], e[4] + 1, e[5] + 1, e[4] + 2, e[5] + 2])
                             }
                         }
 
-                        if (!((tab[parseInt(element[2]) + 1])===undefined) && tab[parseInt(element[2]) + 1][parseInt(element[3]) - 1] === 'b'||tab[parseInt(element[2]) + 1][parseInt(element[3]) - 1] === 'b') {
-                            if (!((tab[parseInt(element[2]) + 2])===undefined) && tab[parseInt(element[2]) + 2][parseInt(element[3]) - 2] === 'e') {
-                                element.push([parseInt(element[2]), parseInt(element[3]), parseInt(element[2]) + 2, parseInt(element[3]) - 2])
+                        if (!((tab[e[4] + 1]) === undefined) && tab[e[4] + 1][e[5] - 1] === 'b' || tab[e[4] + 1][e[5] - 1] === 'b') {
+                            if (!((tab[e[4] + 2]) === undefined) && tab[e[4] + 2][e[5] - 2] === 'e') {
+                                e.push([e[4], e[5], e[4] + 1, e[5] - 1, e[4] + 2, e[5] - 2])
                             }
                         }
                     })
@@ -139,17 +139,29 @@ class PossibleMovesController {
             if (this.PLAYER_TURN === "player1") {
                 for (var i = 0; i <= 7; i++) {
                     for (var j = 0; j <= 7; j++) {
-                        if (tab[i][j] === 'w'||tab[i][j] === 'wq') {
+                        if (tab[i][j] === 'w' || tab[i][j] === 'wq') {
 
-                            if (tab[i - 1][j + 1] === 'b'||tab[i - 1][j + 1] === 'bq') {
+                            if (!(tab[i - 1]===undefined) && tab[i - 1][j + 1] === 'b' || tab[i - 1][j + 1] === 'bq') {
                                 if (tab[i - 2][j + 2] === 'e') {
-                                    newMoves.push([i, j, i - 2, j + 2])
+                                    newMoves.push([i, j, i - 1, j + 1, i - 2, j + 2])
                                 }
                             }
 
-                            if (tab[i - 1][j - 1] === 'b'||tab[i - 1][j - 1] === 'bq') {
+                            if (!(tab[i - 1]===undefined) && tab[i - 1][j - 1] === 'b' || tab[i - 1][j - 1] === 'bq') {
                                 if (tab[i - 2][j - 2] === 'e') {
-                                    newMoves.push([i, j, i - 2, j - 2])
+                                    newMoves.push([i, j, i - 1, j - 1, i - 2, j - 2])
+                                }
+                            }
+
+                            if (!(tab[i + 1]===undefined) && tab[i + 1][j + 1] === 'b' || tab[i + 1][j + 1] === 'bq') {
+                                if (tab[i + 2][j + 2] === 'e') {
+                                    newMoves.push([i, j, i + 1, j + 1, i + 2, j + 2])
+                                }
+                            }
+
+                            if (!(tab[i + 1]===undefined) && tab[i + 1][j - 1] === 'b' || tab[i + 1][j - 1] === 'bq') {
+                                if (tab[i + 2][j - 2] === 'e') {
+                                    newMoves.push([i, j, i + 1, j - 1, i + 2, j - 2])
                                 }
                             }
                         }
@@ -158,17 +170,29 @@ class PossibleMovesController {
             } else {
                 for (var i = 0; i <= 7; i++) {
                     for (var j = 0; j <= 7; j++) {
-                        if (tab[i][j] === 'b'||tab[i][j] === 'bq') {
+                        if (tab[i][j] === 'b' || tab[i][j] === 'bq') {
 
-                            if (tab[i + 1][j + 1] === 'w'||tab[i + 1][j + 1] === 'wq') {
+                            if (!(tab[i + 1]===undefined) && tab[i + 1][j + 1] === 'w' || tab[i + 1][j + 1] === 'wq') {
                                 if (tab[i + 2][j + 2] === 'e') {
-                                    newMoves.push([i, j, i + 2, j + 2])
+                                    newMoves.push([i, j, i + 1, j + 1, i + 2, j + 2])
                                 }
                             }
 
-                            if (tab[i + 1][j - 1] === 'w'||tab[i + 1][j - 1] === 'wq') {
+                            if (!(tab[i + 1]===undefined) && tab[i + 1][j - 1] === 'w' || tab[i + 1][j - 1] === 'wq') {
                                 if (tab[i + 2][j - 2] === 'e') {
-                                    newMoves.push([i, j, i + 2, j - 2])
+                                    newMoves.push([i, j, i + 1, j - 1, i + 2, j - 2])
+                                }
+                            }
+
+                            if (!(tab[i - 1]===undefined) && tab[i - 1][j + 1] === 'w' || tab[i - 1][j + 1] === 'wq') {
+                                if (tab[i - 2][j + 2] === 'e') {
+                                    newMoves.push([i, j, i - 1, j + 1, i - 2, j + 2])
+                                }
+                            }
+
+                            if (!(tab[i - 1]===undefined) && tab[i - 1][j - 1] === 'w' || tab[i - 1][j - 1] === 'wq') {
+                                if (tab[i - 2][j - 2] === 'e') {
+                                    newMoves.push([i, j, i - 1, j - 1, i - 2, j - 2])
                                 }
                             }
                         }
@@ -179,6 +203,38 @@ class PossibleMovesController {
 
         return newMoves
     }
+
+    queenMoves(tab) {
+
+        var newQueenMoves = []
+
+        for (var i = 0; i <= 7; i++) {
+            for (var j = 0; j <= 7; j++) {
+                if (tab[i][j] === 'wq' || tab[i][j] === 'bq') {
+
+                    if (tab[i - 1][j + 1] === 'e') {
+                        newQueenMoves.push([i, j, i - 1, j + 1])
+                    }
+
+                    if (tab[i - 1][j - 1] === 'e') {
+                        newQueenMoves.push([i, j, i - 1, j - 1])
+                    }
+
+                    if (tab[i + 1][j + 1] === 'e') {
+                        newQueenMoves.push([i, j, i + 1, j + 1])
+                    }
+
+                    if (tab[i + 1][j - 1] === 'e') {
+                        newQueenMoves.push([i, j, i + 1, j - 1])
+                    }
+
+                }
+            }
+        }
+
+        return newQueenMoves
+    }
 }
+
 
 module.exports = PossibleMovesController
