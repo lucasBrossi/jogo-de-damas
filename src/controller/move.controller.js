@@ -37,22 +37,43 @@ class MoveController {
             } else {
                 moves4.push(e)
             }
-
-            console.log(e)
         })
+
+        const playerTurn = responseGame.responseGame[0].playerTurn==='player1' ? 'w' : 'b'
+
+        var tab = responseGame.responsePieces[0].tab
 
         if(moves6.length > 0) {
             finalMoves = moves6
+
+            tab[move[0]][move[1]] = 'e'
+            tab[move[6][2]][move[6][3]] = playerTurn
         } else if(moves5.length > 0) {
             finalMoves = moves5
         } else {
             finalMoves = moves4
         }
 
-        console.log('52', move)
+        const validMove = finalMoves.filter(e => e.toString()===move.toString())
+        
+        if(validMove.length > 0) {
 
-        const validMove = finalMoves.filter(e => e===move)
-        console.log(validMove)
+            console.log(responseGame.responsePieces[0].tab[move[0]][move[1]])
+
+            
+
+            
+
+            sets = { 
+                tab: 
+            }
+
+           /*  if(responseGame.responseGame[0].playerTurn==='player1') {
+
+                const responsePlayerMove = await new Database('src/db/pieces.json').update(gameId, )
+            } */
+
+        }
 
         return res.status(200).send('hellow')
     }
