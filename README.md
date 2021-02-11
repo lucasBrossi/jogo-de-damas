@@ -35,7 +35,7 @@ Player can choose to capture any piece and not necessarily make the move that al
     - /games
     - /moves
 
-###### These routes are responsible for creating a game and obtaining some information about this or another game, in the case of "/games". On the other hand, "/moves" is responsible for sending the movements and checking if they are in accordance with the rules (English checkers). according to the rules, the move takes place.
+##### These routes are responsible for creating a game and obtaining some information about this or another game, in the case of "/games". On the other hand, "/moves" is responsible for sending the movements and checking if they are in accordance with the rules (English checkers). according to the rules, the move takes place.
 
 ### "/games":
 
