@@ -4,12 +4,14 @@ const { promisify } = require('util')
 
 const readFileAsync = promisify(readFile)
 const writeFileAsync = promisify(writeFile)
+
+//CRUD SERVICE
  
 class Database {
 
     constructor(ARCHIVE_NAME) {
         this.ARCHIVE_NAME = ARCHIVE_NAME
-    }
+    };
 
     async getData() {
         const archive = await readFileAsync(this.ARCHIVE_NAME, 'utf8')
@@ -51,7 +53,7 @@ class Database {
         const data = await this.getData()
         const index = data.findIndex(item => item.id===id)
         if(index===-1) {
-            throw Error('Id n~ao cadastrado')
+            throw Error('Id not found')
         }
 
         data.splice(index, 1)

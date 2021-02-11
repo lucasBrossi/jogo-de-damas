@@ -4,6 +4,6 @@ const Allow = require('../../middleware/permission')
 
 const MoveController = require('../controller/move.controller')
 
-routes.put('/pieces/:gameId', new Allow().qualification, new MoveController().updateMove )
+routes.put('/moves/:gameId', new Allow().qualification, new MoveController().updateMove)
 
 module.exports = routes

@@ -1,4 +1,5 @@
-const Database = require('../service')
+const Database = require('../crud')
+
 const PossibleMovesController = require('./possible.moves.controller')
 const PlayerController = require('./player.controller')
 
@@ -13,17 +14,18 @@ class GameController {
         const { idPlayer2 } = req.body
 
         if (gameId === req.player.gameId) {
+
             var responseGame = await new Database('src/db/games.json').read(gameId)
+
             if (responseGame[0].idPlayer2 === '') {
-                if (!idPlayer2) {
-                    return res.status(400).send('Id Player2 Nao informado')
-                }
+
+                if (!idPlayer2) { return res.status(400).send('Id Player2 Nao informado') }
 
                 const responseUpdatePlayer2 = await new PlayerController().updateGame(gameId, idPlayer2)
+
                 responseGame = await new Database('src/db/games.json').read(gameId)
-                if (!responseUpdatePlayer2) {
-                    return res.status(404).send('notFound')
-                }
+
+                if (!responseUpdatePlayer2) { return res.status(404).send('notFound') }
             }
 
             const responsePieces = await new Database('src/db/pieces.json').read(gameId)
@@ -37,27 +39,33 @@ class GameController {
             }
 
             if (res) {
-                
+
                 if (responseGame[0].points.w === 12) {
-                    
+
                     return res.status(200).send({
+
                         message: `Fim de Jogo, Vitoria de ${responseGame[0].idPlayer1}`,
                         scoreboard: `White ${responseGame[0].points.w}:${responseGame[0].points.b} Black`
+
                     })
 
                 } else if (responseGame[0].points.b === 12) {
-                    
+
                     return res.status(200).send({
+
                         message: `Fim de Jogo, Vitoria de ${responseGame[0].idPlayer2}`,
                         scoreboard: `White ${responseGame[0].points.w}:${responseGame[0].points.b} Black`
+
                     })
 
                 } else if (responseMoves.length === 0) {
-                    
+
                     return res.status(200).send({ message: "Fim de Jogo" })
+
                 } else {
-                    
+
                     return res.status(200).send(response)
+
                 }
 
             }
@@ -95,10 +103,12 @@ class GameController {
                 b: 0
             }
         }
+
         const dataPieces = {
             id: gameId,
             tab
         }
+
         try {
 
             await new Database('src/db/pieces.json').create(dataPieces)

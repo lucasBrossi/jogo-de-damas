@@ -13,10 +13,6 @@ class PossibleMovesController {
 
         if (newPositions.length > 0) {
 
-            /* let newPositions2 = this.secondCaptureMove(newPositions)
-            let newPositions3 = this.otherCaptureMoves(newPositions2, 6)
-            let newPositions4 = this.otherCaptureMoves(newPositions3, 7)
- */
             return newPositions
 
         } else {
@@ -160,114 +156,6 @@ class PossibleMovesController {
         return newMoves
 
     }
-
-    /* //THE SECOND CAPTURE
-
-    secondCaptureMove(newPositions) {
-
-        const tab = this.TAB
-
-        let newMoves = newPositions
-
-        var oponentPieceQueen = this.PLAYER_TURN === "player1" ? 'bq' : 'wq'
-        var oponentPiece = this.PLAYER_TURN === "player1" ? 'b' : 'w'
-
-        newMoves.forEach(e => {
-
-            if (!!tab[e[4] - 1] && (tab[e[4] - 1][e[5] + 1] === oponentPiece || tab[e[4] - 1][e[5] + 1] === oponentPieceQueen) && (e[4] - 1 !== e[2] || e[5] + 1 !== e[3])) {
-
-                if (!!tab[e[4] - 2] && tab[e[4] - 2][e[5] + 2] === 'e') {
-
-                    e.push(e[4] - 1, e[5] + 1, e[4] - 2, e[5] + 2)
-                }
-            }
-        
-
-            if (!!tab[e[4] - 1] && (tab[e[4] - 1][e[5] - 1] === oponentPiece || tab[e[4] - 1][e[5] - 1] === oponentPieceQueen) && (e[4] - 1 !== e[2] || e[5] - 1 !== e[3])) {
-
-                if (!!tab[e[4] - 2] && tab[e[4] - 2][e[5] - 2] === 'e') {
-
-                    e.push(e[4] - 1, e[5] - 1, e[4] - 2, e[5] - 2)
-                }
-            }
-
-            if (!!tab[e[4] + 1] && (tab[e[4] + 1][e[5] + 1] === oponentPiece || tab[e[4] + 1][e[5] + 1] === oponentPieceQueen) && (e[4] + 1 !== e[2] || e[5] + 1 !== e[3])) {
-
-                if (!!tab[e[4] + 2] && tab[e[4] + 2][e[5] + 2] === 'e') {
-
-                    e.push(e[4] + 1, e[5] + 1, e[4] + 2, e[5] + 2)
-                }
-            }
-
-            if (!!tab[e[4] + 1] && (tab[e[4] + 1][e[5] - 1] === oponentPiece || tab[e[4] + 1][e[5] - 1] === oponentPieceQueen) && (e[4] + 1 !== e[2] || e[5] - 1 !== e[3])) {
-
-                if (!!tab[e[4] + 2] && tab[e[4] + 2][e[5] - 2] === 'e') {
-
-                    e.push(e[4] + 1, e[5] - 1, e[4] + 2, e[5] - 2)
-                }
-            }
-
-
-
-        })
-
-        return newMoves
-    }
-
-    //THE OTHER CAPTURES AFTER DE SECOND AND DE FIRST ONE
-
-    otherCaptureMoves(newPositions, num) {
-
-        const tab = this.TAB
-
-        let newMoves = newPositions
-
-        var oponentPieceQueen = this.PLAYER_TURN === "player1" ? 'bq' : 'wq'
-        var oponentPiece = this.PLAYER_TURN === "player1" ? 'b' : 'w'
-
-        newMoves.forEach(e => {
-
-            if (this.PLAYER_TURN === "player1") {
-
-                if (!!tab[e[num][4] - 1] && (tab[e[num][4] - 1][e[num][5] + 1] === oponentPiece || tab[e[num][4] - 1][e[num][5] + 1] === oponentPieceQueen)) {
-
-                    if (!!tab[e[num][4] - 2] && (tab[e[num][4] - 2][e[num][5] + 2] === 'e')) {
-
-                        e.push([e[num][4], e[num][5], e[num][4] - 1, e[num][5] + 1, e[num][4] - 2, e[num][5] + 2])
-                    }
-                }
-
-                if (!!tab[e[num][4] - 1] && (tab[e[num][4] - 1][e[num][5] - 1] === oponentPiece || tab[e[num][4] - 1][e[num][5] - 1] === oponentPieceQueen)) {
-
-                    if (!!tab[e[num][4] - 2] && (tab[e[num][4] - 2][e[num][5] - 2] === 'e')) {
-
-                        e.push([e[num][4], e[num][5], e[num][4] - 1, e[num][5] - 1, e[num][4] - 2, e[num][5] - 2])
-                    }
-                }
-
-            } else {
-
-                if (!!tab[e[num][4] + 1] && (tab[e[num][4] + 1][e[num][5] + 1] === oponentPiece || tab[e[num][4] + 1][e[num][5] + 1] === oponentPieceQueen)) {
-
-                    if (!!tab[e[num][4] + 2] && tab[e[num][4] + 2][e[num][5] + 2] === 'e') {
-
-                        e.push([e[num][4], e[num][5], e[num][4] + 1, e[num][5] + 1, e[num][4] + 2, e[num][5] + 2])
-                    }
-                }
-
-                if (!!tab[e[num][4] + 1] && (tab[e[num][4] + 1][e[num][5] - 1] === oponentPiece || tab[e[num][4] + 1][e[num][5] - 1] === oponentPieceQueen)) {
-
-                    if (!!tab[e[num][4] + 2] && tab[e[num][4] + 2][e[num][5] - 2] === 'e') {
-
-                        e.push([e[num][4], e[num][5], e[num][4] + 1, e[num][5] - 1, e[num][4] + 2, e[num][5] - 2])
-                    }
-                }
-            }
-
-        })
-
-        return newMoves
-    } */
-
 }
+
 module.exports = PossibleMovesController

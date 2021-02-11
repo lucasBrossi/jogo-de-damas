@@ -9,7 +9,7 @@ class Allow {
 
             next()
         } catch (error) {
-            return res.status(401).send({ mensagem: "Nao autorizado" })   
+            return res.status(401).send({ mensagem: "Nao autorizado" })
         }
     }
 }
