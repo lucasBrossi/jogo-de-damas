@@ -25,7 +25,7 @@ class PossibleMovesController {
         }
     }
 
-    //THE SIMPLE MOVE LIST IS CREATED HERE
+    //THE ALL SIMPLE MOVES ARE CREATED HERE
 
     simpleMoves() {
 
@@ -104,7 +104,7 @@ class PossibleMovesController {
         return newQueenMoves
     }
 
-    //THE FIRST CAPTURE POSSIBLE MOVE
+    //THE ALL CAPTURE POSSIBLE MOVES
 
     firstCaptureMove() {
 

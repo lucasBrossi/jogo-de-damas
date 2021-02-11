@@ -238,16 +238,21 @@ class MoveController {
 
             const responsePlayerGame = await new Database('src/db/games.json').update(gameId, setGame)
 
-            let nextMoves = await new GameController().getGame(env, null, null)
+            const nextGame = await new GameController().getGame(env, null, null)
+
+            let nextMoves = nextGame.responseMoves
 
             var parcialResponse = {
                 responsePlayerGame,
                 responsePlayerMove,
-                scoreBoard: nextMoves.responseGame[0].points,
-                nextMoves: nextMoves.responseMoves
+                scoreBoard: nextGame.responseGame[0].points,
+                nextMoves
             }
 
-            if (nextMoves.responseMoves[0].length === 6 && (newPoints.b > 0|| newPoints.w > 0) && move.length === 6) {
+            if (!!nextMoves[0] && nextMoves[0].length === 6 && (newPoints.b > 0|| newPoints.w > 0) && move.length === 6 && 
+            ((nextMoves[0][0]===move[4] && nextMoves[0][1]===move[5])||
+            (!!nextMoves[1] && nextMoves[1][0]===move[4] && nextMoves[1][1]===move[5])||
+            (!!nextMoves[2] && nextMoves[2][0]===move[4] && nextMoves[2][1]===move[5]))) {
 
                 playerTurn = (playerTurn === 'player1') ? 'player2' : 'player1'
 
