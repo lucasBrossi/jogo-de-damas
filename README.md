@@ -44,6 +44,8 @@ Player can choose to capture any piece and not necessarily make the move that al
 1. Post
 - responsible for creating the game by setting the information with the id of player 1, the initial positions of the pieces on the board, the scoreboard and the empty "idPlayer2" to receive the second player's id. Returning to the user, the unique ID of the match and the verification token for player 2 access (a token is only useful for a game. When trying to access another game with the same token, access will be denied) 
 
+![Board Logo](/images/boardRepresent.png)
+
 2. Get
 - responsible for finding game information, for that, it is necessary to have the game ID and the access token for the game in addition to the idPlayer2 that the user can choose as he wishes.
 
