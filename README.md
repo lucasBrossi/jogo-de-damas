@@ -47,7 +47,7 @@ Player can choose to capture any piece and not necessarily make the move that al
 ![Board image](/images/boardRepresent.png)
 ##### The letters 'b' represent the BLACK pieces and de 'w' represent the WHITE pieces. The 'e' represent de empty space
 
-- We chose to create the matrix-shaped board to have the best development during the process. So there is no need to worry about the id for each piece due to the promotion to the queen.
+- We choose to create the matrix-shaped board to have the best development during the process. So there is no need to worry about the id for each piece due to the promotion to the queen.
 
 2. Get
 - responsible for finding game information, for that, it is necessary to have the game ID and the access token for the game in addition to the idPlayer2 that the user can choose as he wishes.
@@ -61,6 +61,8 @@ Player can choose to capture any piece and not necessarily make the move that al
     - layout of board pieces, 
     - the ids of each player, 
     - the match id and the possible moves of the player of the round according to the rules.
+
+    ![ScoreBoard image](/images/finalScoreboard.png)
 
 If the number of points on the score of one of the players reaches 12, the return will bring the score with the winning idPlayer.
 
@@ -82,4 +84,5 @@ The array must contain the positions of the current location of the piece (the f
 
 - If the player has made a capture, the system checks if there is a composite capture with that same piece, if it has, the player's shift will not be changed and the system will wait for the next capture movement of the current player
 
-- If the initial movement is invalid, it returns an error: "Invalid movement"
+    ![invalidMove image](/images/invalidMove.png)
+- If the initial movement is invalid, it returns an error: "Invalid move"
