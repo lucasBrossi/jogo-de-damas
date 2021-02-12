@@ -31,7 +31,7 @@ Player can choose to capture any piece and not necessarily make the move that al
 
 ### The Routes:
 
-#### The API uses some access routes so that the user has the best possible experience with the system. They contain the famous CRUD with a semi relational database that searches the data for the same verification id.
+#### The API uses some access routes so that the user has the best possible experience with the system. They contain the famous CRUD with a database that searches the informations for the same verification id.
 ##### The routes are:
     
     - /games
