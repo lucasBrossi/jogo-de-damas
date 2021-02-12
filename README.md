@@ -75,7 +75,7 @@ If the number of points on the score of one of the players reaches 12, the retur
 
 - After that, the return of the api will contain the player turn, the score, and the next moves.
 
-![MoveReturn image](/images/returnFromMove.png)   ![MoveCapture image](/images/moveCapture.png)
+    ![MoveReturn image](/images/returnFromMove.png)   ![MoveCapture image](/images/moveCapture.png)
 ##### The movements are arrays with 4 or 6 positions, 4 for simple movements and 6 for captures.
 
 The array must contain the positions of the current location of the piece (the first two values ​​with LINE and COLUMN of the piece on the board), the positions of the piece's location after the movement (the last two values) and, in the case of catches, the positions of the captured part (the two values ​​in the middle of the array, position [2] and [3])
