@@ -13,6 +13,8 @@
 
 ### Rules:
 
+![RealBoard image](/images/realBoardRepresent.png)
+
 The game of checkers is played between two players, on a square board, of 64 alternately light and dark squares, with 12 white and 12 black pieces.
 
 The objective is to capture or immobilize the opponent's pieces. The player who manages to capture all the enemy's pieces wins the game.
