@@ -15,6 +15,7 @@ class Database {
 
     async getData() {
         const archive = await readFileAsync(this.ARCHIVE_NAME, 'utf8')
+
         return JSON.parse(archive.toString())
     }
 
@@ -26,6 +27,9 @@ class Database {
     async read(id) {
         const data = await this.getData()
         const dataFilter = data.filter(item => id ? item.id===id : true)
+        if(dataFilter.length === 0) {
+            return 'Id not found'
+        }
         return dataFilter
     } 
 
@@ -65,7 +69,7 @@ class Database {
         const index = data.findIndex(item => item.id===id)
 
         if(index===-1) {
-            throw Error('Id n~ao cadastrado')
+            throw Error('Id not found')
         }
 
         const old = data[index]

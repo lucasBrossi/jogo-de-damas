@@ -9,7 +9,11 @@ class MoveController {
 
         const { gameId } = req.params
 
-        var env = {
+        if(!req.body.idPlayer2) {
+            return req.status(400).send({error: 'Id Player2 is not in body'})
+        }
+
+        const MOCK_GETGAME = {
             query: {
                 gameId
             },
@@ -21,24 +25,25 @@ class MoveController {
             }
         };
 
-        const responseGame = await new GameController().getGame(env, null, null)
+        const responseGame = await new GameController().getGameToMove(MOCK_GETGAME)
+
+        if(responseGame==='Id not found') { return res.status(404).send({error: 'Game id is not found'})}
 
         var tab = responseGame.responsePieces[0].tab
         var points = responseGame.responseGame[0].points
+        var playerTurn = responseGame.responseGame[0].playerTurn
 
         var newPoints = {
             w: 0,
             b: 0
         }
 
-        var playerTurn = responseGame.responseGame[0].playerTurn
         var validMove
 
         const playerTurnPiece = tab[move[0]][move[1]]
 
         var movesFirstCap = []
         var movesSimple = []
-        var impossibleMove = false
         var finalMoves = []
 
         responseGame.responseMoves.map(e => {
@@ -47,15 +52,12 @@ class MoveController {
 
                 movesFirstCap.push(e)
 
-            } else if (e.length === 4) {
+            } else {
 
                 movesSimple.push(e)
 
-            } else {
-
-                impossibleMove = true
-            };
-        });
+            }
+        })
 
         if (movesFirstCap.length > 0) {
 
@@ -96,7 +98,7 @@ class MoveController {
             }
 
         } else {
-            return res.status(200).send({ message: "Fim de Jogo, Nenhum movimento eh possivel" })
+            return res.status(200).send({ message: "Game Over, draw" })
         }
 
         if (validMove.length > 0) {
@@ -113,7 +115,7 @@ class MoveController {
 
             await new Database('src/db/games.json').update(gameId, setGame)
 
-            const nextGame = await new GameController().getGame(env, null, null)
+            const nextGame = await new GameController().getGameToMove(MOCK_GETGAME)
 
             let nextMoves = nextGame.responseMoves
 
@@ -138,7 +140,9 @@ class MoveController {
 
             } else {
 
-                tab[move[4]][move[5]] = (move[4] === 0 && playerTurnPiece === 'w') || (move[4] === 7 && playerTurnPiece === 'b') ? `${playerTurnPiece}q` : playerTurnPiece
+                if(move[4]!==undefined) {
+                    tab[move[4]][move[5]] = (move[4] === 0 && playerTurnPiece === 'w') || (move[4] === 7 && playerTurnPiece === 'b') ? `${playerTurnPiece}q` : playerTurnPiece
+                }
 
                 const setTurn = {
                     playerTurn
@@ -152,7 +156,7 @@ class MoveController {
 
                 await new Database('src/db/pieces.json').update(gameId, setRealPiece)
 
-                nextMoves = await new GameController().getGame(env, null, null)
+                nextMoves = await new GameController().getGameToMove(MOCK_GETGAME)
 
                 const finalResponse = {
 

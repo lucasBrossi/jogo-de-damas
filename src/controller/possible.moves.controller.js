@@ -9,7 +9,7 @@ class PossibleMovesController {
 
         const newMoves = this.simpleMoves()
 
-        let newPositions = this.firstCaptureMove()
+        const newPositions = this.firstCaptureMove()
 
         if (newPositions.length > 0) {
 
