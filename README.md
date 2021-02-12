@@ -44,10 +44,10 @@ Player can choose to capture any piece and not necessarily make the move that al
 1. Post
 - responsible for creating the game by setting the information with the id of player 1, the initial positions of the pieces on the board, the scoreboard and the empty "idPlayer2" to receive the second player's id. Returning to the user, the unique ID of the match and the verification token for player 2 access (a token is only useful for a game. When trying to access another game with the same token, access will be denied) 
 
-![Board Logo](/images/boardRepresent.png)
+![Board image](/images/boardRepresent.png)
 ##### The letters 'b' represent the BLACK pieces and de 'w' represent the WHITE pieces. The 'e' represent de empty space
 
-    * We chose to create the matrix-shaped board to have the best development during the process. So there is no need to worry about the id for each piece due to the promotion to the queen.
+- We chose to create the matrix-shaped board to have the best development during the process. So there is no need to worry about the id for each piece due to the promotion to the queen.
 
 2. Get
 - responsible for finding game information, for that, it is necessary to have the game ID and the access token for the game in addition to the idPlayer2 that the user can choose as he wishes.
@@ -74,6 +74,11 @@ If the number of points on the score of one of the players reaches 12, the retur
 - The movement is compared with the possible movements according to the rules of the game and if it passes the check, then the game uses the informed movement to change the board in the database, as well as the score and the player's turn status.
 
 - After that, the return of the api will contain the player turn, the score, and the next moves.
+
+![MoveReturn image](/images/returnFromMove.png)![MoveCapture image](/images/moveCapture.png)
+##### The movements are arrays with 4 or 6 positions, 4 for simple movements and 6 for captures.
+
+The array must contain the positions of the current location of the piece (the first two values ​​with LINE and COLUMN of the piece on the board), the positions of the piece's location after the movement (the last two values) and, in the case of catches, the positions of the captured part (the two values ​​in the middle of the array, position [2] and [3])
 
 - If the player has made a capture, the system checks if there is a composite capture with that same piece, if it has, the player's shift will not be changed and the system will wait for the next capture movement of the current player
 
