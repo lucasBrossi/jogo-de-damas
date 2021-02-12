@@ -47,6 +47,8 @@ Player can choose to capture any piece and not necessarily make the move that al
 ![Board Logo](/images/boardRepresent.png)
 ##### The letters 'b' represent the BLACK pieces and de 'w' represent the WHITE pieces. The 'e' represent de empty space
 
+    * We chose to create the matrix-shaped board to have the best development during the process. So there is no need to worry about the id for each piece due to the promotion to the queen.
+
 2. Get
 - responsible for finding game information, for that, it is necessary to have the game ID and the access token for the game in addition to the idPlayer2 that the user can choose as he wishes.
 
